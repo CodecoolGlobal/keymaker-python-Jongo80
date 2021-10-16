@@ -57,11 +57,17 @@ def create_matrix(word1, word2):
 
 
 def zig_zag_concatenate(matrix):
-    """
-    >>> zig_zag_concatenate(['abc', 'def', 'ghi', 'jkl'])
-    'adgjkhebcfil'
-    """
-    pass
+    result = ""
+    for z in range(len(matrix)):
+        count2 = z
+        count = z + 1
+        if z % 2 == 0 or z == 0:
+            for i in range(len(matrix)):
+                result += matrix[i][count2:count]
+        else:
+            for i in reversed(range(len(matrix))):
+                result += matrix[i][count2:count]
+    return result
 
 
 def rotate_right(word, n):

@@ -118,27 +118,68 @@ def rotate_right(word, n):
 
 
 def get_square_index_chars(word):
-    """
-    >>> get_square_index_chars('abcdefghijklm')
-    'abej'
-    """
-    pass
+    result = ""
+    for i in range(len(word)):
+        for z in range(len(word)):
+            if i == z**2:
+                result += word[i]
+    return result
 
 
 def remove_odd_blocks(word, block_length):
-    """
-    >>> remove_odd_blocks('abcdefghijklm', 3)
-    'abcghim'
-    """
-    pass
+    result = ""
+    count = block_length
+    count2 = 0
+    if len(word) % block_length != 0:
+        rng = round(len(word) / block_length + 0.5)
+    else:
+        rng = round(len(word) / block_length)
+    for j in range(rng):
+        if j % 2 == 0:
+            for i in range(count2, count):
+                if i < len(word):
+                    result += word[i]
+        count += block_length
+        count2 += block_length
+    return result
 
 
 def reduce_to_fixed(word, n):
-    """
-    >>> reduce_to_fixed('abcdefghijklm', 6)
-    'bafedc'
-    """
-    pass
+    cut = word[:n]
+    word = cut
+    n = n // 3
+    answer = ""
+    reversed_answer = ""
+    while True:
+        if n > len(word):
+            n = n - len(word)
+        else:
+            break
+    if n == 3:
+        cnt = n + 1
+    elif n == 4:
+        cnt = n - 1
+    elif n > 4:
+        cnt = n - 1
+        for i in range(n - 4):
+            cnt -= 2
+    elif n < 3:
+        cnt = n + 1
+        for i in range(3 - n):
+            cnt += 2
+    if len(word) > 6:
+        for i in range(len(word) - 6):
+            cnt += 1
+    elif len(word) < 6:
+        for i in range(6 - len(word)):
+            cnt -= 1
+    for i in reversed(range(cnt)):
+        if i != 0:
+            answer += word[-i]
+    answer += word[:n]
+    for i in reversed(range(len(answer))):
+        reversed_answer += answer[i]
+    return reversed_answer
 
 
 def hash_it(word):
@@ -156,5 +197,6 @@ def hash_it(word):
 
 
 if __name__ == '__main__':
+    # if the name is 'neo' then the result should be 'theone'
     name = input("Enter your name! ").lower()
     print(f'Your key: {hash_it(name)}')

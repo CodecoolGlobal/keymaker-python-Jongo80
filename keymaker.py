@@ -17,11 +17,12 @@ def shift_characters(word, shift):
 
 
 def pad_up_to(word, shift, n):
-    """
-    >>> pad_up_to('abb', 5, 11)
-    'abbfggkllpq'
-    """
-    pass
+    resulted_string = word
+    for i in range(n):
+        shifted_word = shift_characters(word, shift)
+        resulted_string += shifted_word
+        word = shifted_word
+    return resulted_string[:n]
 
 
 def abc_mirror(word):

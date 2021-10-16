@@ -1,9 +1,19 @@
 def shift_characters(word, shift):
-    """
-    >>> shift_characters('abby', 5)
-    'fggd'
-    """
-    pass
+    string_of_all_letters = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z"
+    listed_word = []
+    for i in range(len(word)):
+        listed_word.append(word[i])
+    list_of_all_letters = string_of_all_letters.split(",")
+    list_of_all_letters += list_of_all_letters * shift
+    for i in range(len(listed_word)):
+        listed_word[i] = list_of_all_letters[list_of_all_letters.index(listed_word[i]) + shift]
+    listed_word = str(listed_word)
+    listed_word = listed_word.replace("[", "")
+    listed_word = listed_word.replace("]", "")
+    listed_word = listed_word.replace(",", "")
+    listed_word = listed_word.replace("'", "")
+    listed_word = listed_word.replace(" ", "")
+    return listed_word
 
 
 def pad_up_to(word, shift, n):

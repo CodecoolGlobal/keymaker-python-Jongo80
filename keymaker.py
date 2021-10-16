@@ -26,11 +26,20 @@ def pad_up_to(word, shift, n):
 
 
 def abc_mirror(word):
-    """
-    >>> abc_mirror('abcd')
-    'zyxw'
-    """
-    pass
+    string_of_all_letters = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z"
+    listed_word = []
+    for i in range(len(word)):
+        listed_word.append(word[i])
+    list_of_all_letters = string_of_all_letters.split(",")
+    for i in range(len(word)):
+        listed_word[i] = list_of_all_letters[25 - list_of_all_letters.index(listed_word[i])]
+    listed_word = str(listed_word)
+    listed_word = listed_word.replace("[", "")
+    listed_word = listed_word.replace("]", "")
+    listed_word = listed_word.replace(",", "")
+    listed_word = listed_word.replace("'", "")
+    listed_word = listed_word.replace(" ", "")
+    return listed_word
 
 
 def create_matrix(word1, word2):

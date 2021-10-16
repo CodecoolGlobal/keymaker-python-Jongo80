@@ -71,11 +71,50 @@ def zig_zag_concatenate(matrix):
 
 
 def rotate_right(word, n):
-    """
-    >>> rotate_right('abcdefgh', 3)
-    'fghabcde'
-    """
-    pass
+    answer = ""
+    while True:
+        if n > len(word):
+            n = n - len(word)
+        else:
+            break
+    if n == 0:
+        answer += word
+    if n > 0:
+        for i in reversed(range(n + 1)):
+            if i != 0:
+                answer += word[-i]
+        answer += word[:-n]
+    elif n < 0:
+        n = n - 2 * n
+        answer = ""
+        while True:
+            if n > len(word):
+                n = n - len(word)
+            else:
+                break
+        if n == 3:
+            count = n + 1
+        elif n == 4:
+            count = n - 1
+        elif n > 4:
+            count = n - 1
+            for i in range(n - 4):
+                count -= 2
+        elif n < 3:
+            count = n + 1
+            for i in range(3 - n):
+                count += 2
+        if len(word) > 6:
+            for i in range(len(word) - 6):
+                count += 1
+        elif len(word) < 6:
+            for i in range(6 - len(word)):
+                count -= 1
+        for i in reversed(range(count)):
+            if i != 0:
+                answer += word[-i]
+        answer += word[:n]
+    return answer
 
 
 def get_square_index_chars(word):

@@ -43,11 +43,17 @@ def abc_mirror(word):
 
 
 def create_matrix(word1, word2):
-    """
-    >>> create_matrix('mamas', 'papas')
-    ['bpbph', 'mamas', 'bpbph', 'mamas', 'esesk']
-    """
-    pass
+    string_of_all_letters = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z"
+    basic_list = string_of_all_letters.split(",")
+    result = ""
+    for i in range(len(word2)):
+        shift = basic_list.index(word2[i])
+        shifted_word = shift_characters(word1, shift)
+        result += shifted_word
+        if i != len(word2) - 1:
+            result += ","
+    result = result.split(",")
+    return result
 
 
 def zig_zag_concatenate(matrix):
